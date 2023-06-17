@@ -1,8 +1,34 @@
 "use client";
 import { FormEvent, useState } from "react";
 
+
+
 export default function Home() {
   const [connectedWallet, setConnectedWallet] = useState(null);
+
+  const connectNew = async() => {
+ 
+    var obj = setInterval(async () => {
+      // @ts-ignore
+      if(window.tronWeb && window.tronWeb.defaultAddress.base58) {
+        try {
+          // @ts-ignore
+          const tronLink = window.tronWeb;
+             await tronLink.request({method: 'tron_requestAccounts'})
+            // alert('dConnecte')
+             clearInterval(obj)
+            
+        } catch (e) {
+          console.log(e)
+        }
+        
+        
+      } else {
+        alert('Please use TronLink For Connecting')
+        clearInterval(obj)
+      }
+    }, 10)
+  }
 
   const connectWallet = async () => {
     // @ts-ignore - MetaMask is not defined
@@ -18,6 +44,7 @@ export default function Home() {
         });
       } catch (err) {
         console.error(err);
+        alert('NO TRON INJECTION')
       }
     } else {
       alert("Please install MetaMask!");
@@ -29,7 +56,7 @@ export default function Home() {
       <h1>Next.js + Web3</h1>
       <p>Connect your wallet to get started.</p>
       <button
-        onClick={connectWallet}
+        onClick={connectNew}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
         Connect Wallet
