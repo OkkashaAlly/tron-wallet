@@ -2,7 +2,7 @@
 import { FormEvent, useState } from "react";
 
 export default function Home() {
-  const [connectedWallet, setConnectedWallet] = useState(true);
+  const [connectedWallet, setConnectedWallet] = useState(null);
 
   const connectWallet = async () => {
     // @ts-ignore - MetaMask is not defined
