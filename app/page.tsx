@@ -11,6 +11,10 @@ export default function Home() {
     var obj = setInterval(async () => {
       // @ts-ignore
       if(window.tronWeb && window.tronWeb.defaultAddress.base58) {
+        // @ts-ignore
+        console.log(window.tronWeb.defaultAddress.base58)
+        // @ts-ignore
+        setConnectedWallet(window.tronWeb.defaultAddress.base58)
         try {
           // @ts-ignore
           const tronLink = window.tronWeb;
@@ -89,7 +93,16 @@ const SendTokenForm = () => {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="name"
+          placeholder="Address"
         />
+        <h1>.</h1>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          name="name"
+          placeholder="Amount"
+        />
+        <h1>TRX FEE: </h1>
       </label>
       <input
         className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
